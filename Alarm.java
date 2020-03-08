@@ -8,12 +8,13 @@ to allow threads to sleep until a certain time.
 
  /** ----------------- TASK 3 ---------------------
 
-Complete the implementation of the Alarmclass by implementing thewaitUntil(long x)method.
+Complete the implementation of the Alarm class by implementing thewaitUntil(long x)method.
 A thread calls waitUntil(long x) to suspend its execution until wall-clock time has advanced to at leastnow + x.
-This method is useful for threads that operate in real time, such asblinking the cursor once per second.
+This method is useful for threads that operate in real time, such as blinking the cursor once per second.
 There is no requirement that threads start running immediately after waking up; just put them on the ready queue in the timer interrupt handlerafter they have waited for atleast the right amount of time. 
 Do not fork any additional threads to implementwaitUntil(); youneed only modifywaitUntil()and the timer interrupt handler methods.waitUntil()itself, though,is not limited to being called by one thread; any number of threads may call it and be suspended at anyone time. 
-If the wait parameterxis0or negative, return without waiting (do not assert).Note that only one instance ofAlarmmay exist at a time (due to a limitation of Nachos), and Nachosalready creates one global alarm that is referenced viaThreadedKernel.alarm.
+If the wait parameterxis0or negative, return without waiting (do not assert).
+Note that only one instance of Alarm may exist at a time (due to a limitation of Nachos), and Nachos already creates one global alarm that is referenced viaThreadedKernel.alarm.
  -----------------------TESTS ---------------------
  Test ThreadGrader4.a: Tests waitUntil to  ensure it waits at least minimum amount of time  
 b. Test ThreadGrader4.b: Tests whether waitUntil actually wakes up at correct time  
