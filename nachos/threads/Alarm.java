@@ -1,5 +1,5 @@
 package nachos.threads;
-
+import java.util.*;
 import nachos.machine.*;
 
 /**

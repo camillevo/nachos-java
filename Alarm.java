@@ -1,6 +1,8 @@
 package nachos.threads;
 
 import nachos.machine.*;
+import java.util.*; 
+import java.util.concurrent.*; 
 /**
 Uses the hardware timer to provide preemption, and
 to allow threads to sleep until a certain time.
@@ -63,8 +65,35 @@ public class Alarm {
 	 */
 	public void waitUntil(long x) {
 		// for now, cheat just to get something working (busy waiting is bad)
+		//https://www.geeksforgeeks.org/treemap-in-java/
+		//this
 		long wakeTime = Machine.timer().getTime() + x;
+		//If the wait parameter x is 0 or negative, return without waiting (do not assert).
+
+		long now = Machine.timer().getTime();
+		if(x <= 0){
+			timerInterrupt();
+		}
+		TreeMap<KThread, int> tree_map = new TreeMap<Kthread, int>(); 
+		while(x > 0){
+			tree_map(this, x); 
+		}
+
+		//TreeSet<KThread.java> ts = new TreeSet<KThread.java>();
+		//long now = Machine.timer().getTime();
+		/*
+		if(now > wakeTime){
+			ts.add(KThread); 
+			timerInterrupt(); 
+		}*/
+		
+		
 		while (wakeTime > Machine.timer().getTime())
 			KThread.yield();
 	}
 }
+
+/**
+SOURCES
+https://howtodoinjava.com/java/collections/java-priorityqueue/
+ */
