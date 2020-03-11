@@ -48,6 +48,7 @@ public class Alarm {
 	 * should be run.
 	 */
 	public void timerInterrupt() {
+		long now = Machine.timer().getTime();
 		KThread.currentThread().yield();
 	}
 
@@ -69,14 +70,16 @@ public class Alarm {
 		//this
 		long wakeTime = Machine.timer().getTime() + x;
 		//If the wait parameter x is 0 or negative, return without waiting (do not assert).
-
-		long now = Machine.timer().getTime();
 		if(x <= 0){
 			timerInterrupt();
 		}
 		TreeMap<KThread, int> tree_map = new TreeMap<Kthread, int>(); 
+		//The thread is currently running. Only one thread can be in the RUNNING state at a time. In Nachos, the global variable currentThread always points to the currently running thread. 
 		while(x > 0){
-			tree_map(this, x); 
+			tree_map(KThread.currentThread, x); 
+			if(x > now){
+				timerInterrupt(); 
+			}
 		}
 
 		//TreeSet<KThread.java> ts = new TreeSet<KThread.java>();
